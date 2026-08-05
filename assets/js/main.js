@@ -96,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.add('active');
         const filter = btn.getAttribute('data-filter');
         filterItems.forEach(item => {
-          const show = filter === 'all' || item.getAttribute('data-category') === filter;
+          const cats = (item.getAttribute('data-category') || '').split(' ');
+          const show = filter === 'all' || cats.includes(filter);
           item.style.display = show ? '' : 'none';
           if (show) {
             item.style.animation = 'fadeUp 0.4s ease forwards';
