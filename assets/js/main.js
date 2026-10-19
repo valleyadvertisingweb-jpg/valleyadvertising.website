@@ -32,13 +32,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Active nav link ---
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  // Page names without ".html" (the site uses clean URLs: /about, /products ...). Home = "index".
+  const pageName = (p) => (p || '').split('#')[0].split('?')[0].split('/').pop().replace(/\.html$/, '') || 'index';
+  const currentPath = pageName(window.location.pathname);
   document.querySelectorAll('.nav-links a, .nav-mobile a').forEach(a => {
-    const href = a.getAttribute('href');
-    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+    if (pageName(a.getAttribute('href')) === currentPath) {
       a.classList.add('active');
     }
   });
+
+  // An old bookmark or search result ending in .html: show the clean address (no reload).
+  if (/\.html$/.test(window.location.pathname) && window.history && window.history.replaceState) {
+    const clean = window.location.pathname.replace(/(?:^|\/)index\.html$/, '/').replace(/\.html$/, '');
+    window.history.replaceState(null, '', clean + window.location.search + window.location.hash);
+  }
 
   // --- Scroll reveal ---
   const revealEls = document.querySelectorAll('.reveal');
