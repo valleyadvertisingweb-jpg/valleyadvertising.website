@@ -2288,3 +2288,27 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-head); letter-spacing: -0.02em;
 .spec-list li { padding: 12px 0; border-top: 1px solid var(--c-border); color: var(--c-text-muted); font-size: .95rem; line-height: 1.7; }
 .spec-list li strong { display: block; color: var(--c-text); font-family: var(--font-head); font-weight: 700; margin-bottom: 2px; }
 
+
+
+/* ── Footer logo (wordmark shown at its real proportions) ── */
+.footer-logo {
+  display: inline-block;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-bottom: 22px;
+  line-height: 0;
+}
+.footer-logo img { display: block; height: 44px; width: auto; }
+.old-footer-logo { display: inline-block; line-height: 0; margin-bottom: 4px; }
+.old-footer-logo img { display: block; height: 52px; width: auto; }
+
+/* ── Home hero on phones: text sits high, lines close together, no empty band ── */
+@media (max-width: 768px) {
+  .old-hero { min-height: 118vw; height: auto; align-items: flex-start; }
+  .old-hero-content { padding: calc(var(--nav-h) + 28px) 0 40px; }
+  .old-hero-h1 { gap: 0; margin-bottom: 14px; line-height: 1; }
+  .old-hero-valley { line-height: .9; }
+  .old-hero-advertising { line-height: 1; margin-top: -2px; }
+  .old-hero-tagline { margin-bottom: 18px; }
+}
